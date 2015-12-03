@@ -203,3 +203,5 @@ function underline(brush, fromX, toX, Y, foreground){
   brush.stroke();
   brush.restore();
 }
+
+module.exports = CanvasXTerm;
