@@ -40,6 +40,7 @@ CanvasXTerm.prototype = {
    */
   draw: function (screen){
     var text = '';
+    var context = this;
     var line, width, height;
     var rows = screen.rows;
     var cols = screen.cols;
@@ -64,10 +65,15 @@ CanvasXTerm.prototype = {
     this.canvas.width = width;
     this.canvas.height = height;
 
+    function reset(){
+      text = '';
+      attrCache = node.attr;
+      stylesCache = context.getStyles(node);
+    }
+
     for (i = 0; i < rows; i++) {
       x = 0;
       y = (i + 0.5) * this.font.lineHeight;
-      text = '';
       line = screen.buffer[i];
 
       if (!line) {
@@ -82,16 +88,13 @@ CanvasXTerm.prototype = {
         }
 
         if (j === 0) {
-          attrCache = node.attr;
-          stylesCache = this.getStyles(node);
+          reset();
         }
 
         if (node.value) {
           if (node.attr !== attrCache) {
             x = this.drawText(text, x, y, this.getStyles(stylesCache)).x;
-            text = '';
-            attrCache = node.attr;
-            stylesCache = this.getStyles(node);
+            reset();
           }
 
           text += node.value;
