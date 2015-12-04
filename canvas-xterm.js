@@ -41,10 +41,12 @@ CanvasXTerm.prototype = {
   draw: function (screen){
     var text = '';
     var context = this;
-    var line, width, height;
     var rows = screen.rows;
     var cols = screen.cols;
-    var node, i, j, x, y, attrCache, stylesCache;
+    var attrCache = null;
+    var stylesCache = null;
+    var node, i, j, x, y;
+    var line, width, height;
 
     if (!this.rows || !this.cols || this.rows !== rows || this.cols !== cols) {
       this.rows = rows;
@@ -94,7 +96,7 @@ CanvasXTerm.prototype = {
         if (node.value) {
           if (node.attr !== attrCache) {
             x = this.drawText(text, x, y, this.getStyles(stylesCache));
-            
+
             reset();
           }
 
