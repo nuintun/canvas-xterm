@@ -136,12 +136,51 @@ CanvasXTerm.prototype = {
     return styles;
   },
   /**
+   * draw background
+   * @param x
+   * @param y
+   * @param width
+   * @param background
+   */
+  drawBackground: function (x, y, width, background){
+    y = y - this.font.size / 2;
+
+    this.brush.save();
+
+    this.brush.fillStyle = background;
+
+    this.brush.fillRect(x, y, width, this.font.size);
+    this.brush.restore();
+  },
+  /**
+   * draw underline
+   * @param x
+   * @param y
+   * @param width
+   * @param foreground
+   */
+  drawUnderline: function (x, y, width, foreground){
+    y = y + this.font.size / 2;
+
+    this.brush.save();
+    this.brush.translate(0, parseInt(y) === y ? 0.5 : 0);
+
+    this.brush.lineWidth = 1;
+    this.brush.strokeStyle = foreground;
+
+    this.brush.beginPath();
+    this.brush.moveTo(x, y);
+    this.brush.lineTo(x + width, y);
+    this.brush.stroke();
+    this.brush.restore();
+  },
+  /**
    * drawText
    * @param text
    * @param x
    * @param y
    * @param styles
-   * @returns {{x: *, y: *}}
+   * @returns x
    */
   drawText: function (text, x, y, styles){
     var font = (styles.italic ? 'italic ' : 'normal ')
@@ -152,12 +191,7 @@ CanvasXTerm.prototype = {
     var width = this.measureWidth(text, font);
 
     if (styles.background) {
-      this.brush.save();
-
-      this.brush.fillStyle = styles.background;
-
-      this.brush.fillRect(x, y - this.font.size / 2, width, this.font.size);
-      this.brush.restore();
+      this.drawBackground(x, y, width, styles.background);
     }
 
     this.brush.save();
@@ -171,7 +205,7 @@ CanvasXTerm.prototype = {
     this.brush.restore();
 
     if (styles.underline) {
-      underline(this.brush, x, x + width, y + this.font.size / 2, styles.foreground);
+      this.drawUnderline(x, y, width, styles.foreground);
     }
 
     return x + width;
@@ -194,26 +228,6 @@ CanvasXTerm.prototype = {
     return width;
   }
 };
-
-/**
- * draw underline
- * @param brush
- * @param x1
- * @param x2
- * @param y
- * @param foreground
- */
-function underline(brush, x1, x2, y, foreground){
-  brush.save();
-  brush.translate(0, parseInt(y) === y ? 0.5 : 0);
-  brush.lineWidth = 1;
-  brush.strokeStyle = foreground;
-  brush.beginPath();
-  brush.moveTo(x1, y);
-  brush.lineTo(x2, y);
-  brush.stroke();
-  brush.restore();
-}
 
 // exports
 module.exports = CanvasXTerm;
