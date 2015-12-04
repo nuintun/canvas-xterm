@@ -95,7 +95,7 @@ CanvasXTerm.prototype = {
 
         if (node.value) {
           if (node.attr !== attrCache) {
-            x = this.drawText(text, x, y, this.getStyles(stylesCache));
+            x = this.drawText(text, x, y, stylesCache);
 
             reset();
           }
@@ -104,7 +104,7 @@ CanvasXTerm.prototype = {
         }
       }
 
-      this.drawText(text, x, y, this.getStyles(stylesCache));
+      this.drawText(text, x, y, stylesCache);
     }
   },
   /**
