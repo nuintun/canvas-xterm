@@ -136,7 +136,7 @@ CanvasXTerm.prototype = {
     return styles;
   },
   /**
-   * draw background
+   * drawBackground
    * @param x
    * @param y
    * @param width
@@ -153,7 +153,7 @@ CanvasXTerm.prototype = {
     this.brush.restore();
   },
   /**
-   * draw underline
+   * drawUnderline
    * @param x
    * @param y
    * @param width
