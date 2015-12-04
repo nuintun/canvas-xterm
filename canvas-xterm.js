@@ -40,9 +40,9 @@ CanvasXTerm.prototype = {
    */
   draw: function (screen){
     var text = '';
-    var width, height;
-    var rows = screen.length;
-    var cols = rows ? screen[0].length : 0;
+    var line, width, height;
+    var rows = screen.rows;
+    var cols = screen.cols;
     var node, i, j, x, y, attrCache, stylesCache;
 
     if (!this.rows || !this.cols || this.rows !== rows || this.cols !== cols) {
@@ -68,9 +68,18 @@ CanvasXTerm.prototype = {
       x = 0;
       y = (i + 0.5) * this.font.lineHeight;
       text = '';
+      line = screen.buffer[i];
+
+      if (!line) {
+        continue;
+      }
 
       for (j = 0; j < cols; j++) {
-        node = screen[i][j];
+        node = line[j];
+
+        if (!node) {
+          continue;
+        }
 
         if (j === 0) {
           attrCache = node.attr;
