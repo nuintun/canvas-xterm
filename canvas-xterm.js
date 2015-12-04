@@ -93,7 +93,8 @@ CanvasXTerm.prototype = {
 
         if (node.value) {
           if (node.attr !== attrCache) {
-            x = this.drawText(text, x, y, this.getStyles(stylesCache)).x;
+            x = this.drawText(text, x, y, this.getStyles(stylesCache));
+            
             reset();
           }
 
@@ -171,10 +172,7 @@ CanvasXTerm.prototype = {
       underline(this.brush, x, x + width, y + this.font.size / 2, styles.foreground);
     }
 
-    return {
-      x: x + width,
-      y: y
-    };
+    return x + width;
   },
   /**
    * measureWidth
@@ -198,21 +196,22 @@ CanvasXTerm.prototype = {
 /**
  * draw underline
  * @param brush
- * @param fromX
- * @param toX
- * @param Y
+ * @param x1
+ * @param x2
+ * @param y
  * @param foreground
  */
-function underline(brush, fromX, toX, Y, foreground){
+function underline(brush, x1, x2, y, foreground){
   brush.save();
-  brush.translate(0, parseInt(Y) === Y ? 0.5 : 0);
+  brush.translate(0, parseInt(y) === y ? 0.5 : 0);
   brush.lineWidth = 1;
   brush.strokeStyle = foreground;
   brush.beginPath();
-  brush.moveTo(fromX, Y);
-  brush.lineTo(toX, Y);
+  brush.moveTo(x1, y);
+  brush.lineTo(x2, y);
   brush.stroke();
   brush.restore();
 }
 
+// exports
 module.exports = CanvasXTerm;
