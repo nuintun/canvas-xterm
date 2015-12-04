@@ -230,4 +230,8 @@ CanvasXTerm.prototype = {
 };
 
 // exports
-module.exports = CanvasXTerm;
+if (typeof module === 'object') {
+  module.exports = CanvasXTerm;
+} else {
+  this.CanvasXTerm = CanvasXTerm;
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="./canvas-xterm.js"></script>
+    <style type="text/css">
+      .xterm {
+        color: #fff;
+        font-size: 0;
+        line-height: 0;
+        padding: 6px;
+        display: inline-block;
+        background-color: #181818;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="xterm">
+      <canvas id="xterm">not support canvas</canvas>
+    </div>
+    <script>
+      var screen = {
+        rows: 1,
+        cols: 14,
+        buffer: [
+          [
+            {
+              "wide": true,
+              "bold": false,
+              "italic": false,
+              "underline": true,
+              "blink": false,
+              "conceal": false,
+              "foreground": "#00cd00",
+              "background": "#cd0000",
+              "attr": 84148737,
+              "value": "红"
+            },
+            {
+              "wide": false,
+              "bold": false,
+              "italic": false,
+              "underline": true,
+              "blink": false,
+              "conceal": false,
+              "foreground": "#00cd00",
+              "background": "#cd0000",
+              "attr": 84148737,
+              "value": ""
+            },
+            {
+              "wide": true,
+              "bold": false,
+              "italic": false,
+              "underline": true,
+              "blink": false,
+              "conceal": false,
+              "foreground": "#00cd00",
+              "background": "#cd0000",
+              "attr": 84148737,
+              "value": "底"
+            },
+            {
+              "wide": false,
+              "bold": false,
+              "italic": false,
+              "underline": true,
+              "blink": false,
+              "conceal": false,
+              "foreground": "#00cd00",
+              "background": "#cd0000",
+              "attr": 84148737,
+              "value": ""
+            },
+            {
+              "wide": true,
+              "bold": false,
+              "italic": false,
+              "underline": true,
+              "blink": false,
+              "conceal": false,
+              "foreground": "#00cd00",
+              "background": "#cd0000",
+              "attr": 84148737,
+              "value": "下"
+            },
+            {
+              "wide": false,
+              "bold": false,
+              "italic": false,
+              "underline": true,
+              "blink": false,
+              "conceal": false,
+              "foreground": "#00cd00",
+              "background": "#cd0000",
+              "attr": 84148737,
+              "value": ""
+            },
+            {
+              "wide": true,
+              "bold": false,
+              "italic": false,
+              "underline": true,
+              "blink": false,
+              "conceal": false,
+              "foreground": "#00cd00",
+              "background": "#cd0000",
+              "attr": 84148737,
+              "value": "划"
+            },
+            {
+              "wide": false,
+              "bold": false,
+              "italic": false,
+              "underline": true,
+              "blink": false,
+              "conceal": false,
+              "foreground": "#00cd00",
+              "background": "#cd0000",
+              "attr": 84148737,
+              "value": ""
+            },
+            {
+              "wide": true,
+              "bold": false,
+              "italic": false,
+              "underline": true,
+              "blink": false,
+              "conceal": false,
+              "foreground": "#00cd00",
+              "background": "#cd0000",
+              "attr": 84148737,
+              "value": "线"
+            },
+            {
+              "wide": false,
+              "bold": false,
+              "italic": false,
+              "underline": true,
+              "blink": false,
+              "conceal": false,
+              "foreground": "#00cd00",
+              "background": "#cd0000",
+              "attr": 84148737,
+              "value": ""
+            },
+            {
+              "wide": true,
+              "bold": false,
+              "italic": false,
+              "underline": true,
+              "blink": false,
+              "conceal": false,
+              "foreground": "#00cd00",
+              "background": "#cd0000",
+              "attr": 84148737,
+              "value": "绿"
+            },
+            {
+              "wide": false,
+              "bold": false,
+              "italic": false,
+              "underline": true,
+              "blink": false,
+              "conceal": false,
+              "foreground": "#00cd00",
+              "background": "#cd0000",
+              "attr": 84148737,
+              "value": ""
+            },
+            {
+              "wide": true,
+              "bold": false,
+              "italic": false,
+              "underline": true,
+              "blink": false,
+              "conceal": false,
+              "foreground": "#00cd00",
+              "background": "#cd0000",
+              "attr": 84148737,
+              "value": "字"
+            },
+            {
+              "wide": false,
+              "bold": false,
+              "italic": false,
+              "underline": true,
+              "blink": false,
+              "conceal": false,
+              "foreground": "#00cd00",
+              "background": "#cd0000",
+              "attr": 84148737,
+              "value": ""
+            }
+          ]
+        ]
+      };
+
+      var xterm = new CanvasXTerm();
+      var canvas = document.getElementById('xterm');
+      var brush = canvas.getContext('2d');
+
+      xterm.draw(screen);
+
+      canvas.width = xterm.canvas.width;
+      canvas.height = xterm.canvas.height;
+
+      brush.drawImage(xterm.canvas, 0, 0);
+    </script>
+  </body>
+</html>
