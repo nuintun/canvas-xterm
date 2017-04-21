@@ -1,5 +1,4 @@
-canvas-xterm
-=========
+# canvas-xterm
 
 >A tool to draw xterm screen
 
